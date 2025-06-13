@@ -44,12 +44,15 @@ jobs:
                 path: public/ # ruta del archivo dist (build)
 
     deploy:
-        if: ${{ always() }} # Debe funcionar sí o sí, así el job anterior caiga en error
+        #if: ${{ always() }} # Debe funcionar sí o sí, así el job anterior caiga en error
         runs-on: ubuntu-latest
         needs: build
 
-        steps:
-            - name: Deploy
-              run: echo "Deploy..."
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment-pages.outputs.page_url }}
 
-            
+        steps:
+            - name: Deploy to GitHub Pages (Uso de Action de Marketplace)
+              id: deployment-pages
+              uses: actions/deploy-pages@v4
