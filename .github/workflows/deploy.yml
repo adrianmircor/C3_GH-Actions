@@ -36,6 +36,7 @@ jobs:
               run: npm run test
 
     deploy:
+        if: ${{ always() }} # Debe funcionar sí o sí, así el job anterior caiga en error
         runs-on: ubuntu-latest
         needs: build
 
