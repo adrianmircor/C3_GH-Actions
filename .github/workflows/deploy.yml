@@ -1,0 +1,11 @@
+name: Deploy
+on: push
+
+jobs:
+    first_job:
+        runs-on: ubunut-latest
+
+        steps:
+            - name: Print variable
+              run: echo "${{ secrets.TOKEN_SECRET_C3_GH_ACTIONS }}"
+            
