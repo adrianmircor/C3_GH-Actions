@@ -3,7 +3,11 @@ on: push
 
 jobs:
     build:
-        runs-on: ubuntu-latest
+        runs-on: ${{ matrix.os }}
+        strategy:
+          matrix:
+            os: [ubuntu-latest, windows-latest]
+            node: [18, 20, 22]
 
         #services:
         #    redis:
@@ -27,7 +31,7 @@ jobs:
             - name: Setup
               uses: actions/setup-node@v4
               with:
-                node-version: '22'
+                node-version: ${{ matrix.node }}
 
             - name: Instalar dependencias
               run: npm install
@@ -39,7 +43,8 @@ jobs:
               run: npm run build
 
             - name: Upload static files as artifact (Uso de Action de Marketplace)
-              uses: actions/upload-pages-artifact@v3 
+              if: ${{ matrix.os == 'ubuntu-latest' && matrix.node == 22 }}
+              uses: actions/upload-pages-artifact@v3
               with:
                 path: public/ # ruta del archivo dist (build)
 
