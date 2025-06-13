@@ -38,6 +38,11 @@ jobs:
             - name: Build page
               run: npm run build
 
+            - name: Upload static files as artifact (Uso de Action de Marketplace)
+              uses: actions/upload-pages-artifact@v3 
+              with:
+                path: public/ # ruta del archivo dist (build)
+
     deploy:
         if: ${{ always() }} # Debe funcionar sí o sí, así el job anterior caiga en error
         runs-on: ubuntu-latest
