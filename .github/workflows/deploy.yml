@@ -35,6 +35,9 @@ jobs:
             - name: Correr Tests
               run: npm run test
 
+            - name: Build page
+              run: npm run build
+
     deploy:
         if: ${{ always() }} # Debe funcionar sí o sí, así el job anterior caiga en error
         runs-on: ubuntu-latest
