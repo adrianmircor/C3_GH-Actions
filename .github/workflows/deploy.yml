@@ -3,7 +3,7 @@ on: push
 
 jobs:
     first_job:
-        runs-on: ubunut-latest
+        runs-on: ubuntu-latest
 
         steps:
             - name: Print variable
