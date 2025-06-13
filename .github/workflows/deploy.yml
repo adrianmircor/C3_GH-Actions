@@ -21,8 +21,17 @@ jobs:
             - name: Print variable
               run: echo "${{ secrets.TOKEN_SECRET_C3_GH_ACTIONS }}"
 
+            - name: Checkout
+              uses: actions/checkout@v4
+
             - name: Setup
               uses: actions/setup-node@v4
               with:
                 node-version: '22'
+
+            - name: Instalar dependencias
+              run: npm install
+
+            - name: Correr Tests
+              run: npm run test
             
